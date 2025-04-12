@@ -75,4 +75,17 @@ public class Persona implements Comparable<Persona> {
 		return "Nombre: " + nombre + " Apellido: " + apellido + " DNI: " + dni;
 	}
 
+	
+	public static void verificarDniInvalido(String dni) throws DniInvalido {
+	       
+        for (int i = 0; i < dni.length(); i++) {
+           
+            if (!Character.isDigit(dni.charAt(i))) {
+            	DniInvalido dni1 = new DniInvalido();
+                throw dni1;
+            }
+        }
+    }
+
+	
 }
