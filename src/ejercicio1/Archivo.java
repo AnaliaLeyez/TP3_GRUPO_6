@@ -8,17 +8,6 @@ import java.util.Iterator;
 import java.util.TreeSet;
 
 public class Archivo {
-	
-//	public static void verificarDniInvalido(String dni) throws DniInvalido {
-//       
-//        for (int i = 0; i < dni.length(); i++) {
-//           
-//            if (!Character.isDigit(dni.charAt(i))) {
-//            	DniInvalido dni1 = new DniInvalido();
-//                throw dni1;
-//            }
-//        }
-//    }
 
 	private String ruta;
 	
@@ -65,11 +54,8 @@ public class Archivo {
 		}
 		return false;	
 	}
-	
-	
-public void escribeLineas(Persona nuevaPersona) {
-    	
-
+		
+	public void escribeLineas(Persona nuevaPersona) {
 		try {
 			FileWriter entrada = new FileWriter(ruta, true);
 			BufferedWriter buffer = new BufferedWriter(entrada);
@@ -86,20 +72,17 @@ public void escribeLineas(Persona nuevaPersona) {
 		}
     }
 	
-public void escribeLineas(TreeSet<Persona> listaPersonas) {
+	public void escribeLineas(TreeSet<Persona> listaPersonas) {
     	
 		try {
 			FileWriter entrada = new FileWriter(ruta, true);
 			BufferedWriter buffer = new BufferedWriter(entrada);
 			
 			Iterator<Persona> it = listaPersonas.iterator();
-			
 			while(it.hasNext()) {
 				Persona p = (Persona) it.next();
-				
 				buffer.write(p.toString());
 				buffer.newLine();
-				
 			}
 			
 			buffer.close();
