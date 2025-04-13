@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.TreeSet;
 
 public class Archivo {
@@ -98,7 +97,7 @@ public class Archivo {
 		}
     }
 	
-	public void leePersonas() {
+public void leePersonas() {
 		
 	    FileReader entrada;
 	    String atributo = "";
@@ -150,6 +149,47 @@ public class Archivo {
 	        e.printStackTrace();
 	    }
 	}
-
 	
+	public TreeSet<Persona> leer()
+	{
+		BufferedReader buffReader;
+		TreeSet<Persona> personas = new TreeSet<Persona>();
+		
+		try {
+			buffReader = new BufferedReader(new FileReader(ruta)) ;
+			String registro = buffReader.readLine();
+			
+			while(registro != null)
+			{
+				String[] atributos = registro.split("-"); // Me devuelve un array con el siguiente formato: String[3]{"nombre", "apellido", "DNI"}
+				if(atributos.length == 3)
+				{
+					String nombre = atributos[0]; // Nombre
+					String apellido = atributos[1]; // Apellido
+					String dni = atributos[2]; // DNI
+					
+					try {
+						Persona.verificarDniInvalido(dni);
+						if(!personas.add(new Persona(nombre, apellido, Integer.parseInt(dni))))
+							System.out.println(nombre + " " + apellido + " ya se encuentra registrado\n");
+					} 
+					catch (DniInvalido e) 
+					{
+						System.out.println(nombre + " " + apellido + " DNI incorrecto");
+						e.printStackTrace();
+					}
+				}
+				
+				registro = buffReader.readLine();
+			}
+			buffReader.close();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		return personas;
+	}
 }
+
+
