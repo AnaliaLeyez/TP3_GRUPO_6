@@ -1,10 +1,13 @@
 package ejercicio1;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.TreeSet;
 
 public class Archivo {
@@ -94,4 +97,59 @@ public class Archivo {
 			e.printStackTrace();
 		}
     }
+	
+	public void leePersonas() {
+		
+	    FileReader entrada;
+	    String atributo = "";
+	    Persona aux = new Persona();
+	    int nroAtributo = 1;
+	    
+	    try {
+	        entrada = new FileReader(ruta);
+	        
+	        int c = entrada.read();
+	        while (c != -1) {
+	        	
+	            if (c == 45) { // guion medio 
+	                if (nroAtributo == 1)
+	                    aux.setNombre(atributo);
+	                
+	                else if (nroAtributo == 2)
+	                    aux.setApellido(atributo);
+
+	                nroAtributo++;
+	                atributo = "";
+	                
+	            } else if (c == '\n') { //salto de linea
+	            	if (!atributo.trim().isEmpty()) {
+	            		try {
+	            			Persona.verificarDniInvalido(atributo.trim()); //trim elimina el salto de linea o espacios vacios
+	            			aux.setDni(Integer.parseInt(atributo.trim()));
+	            		} catch (DniInvalido e) {
+	            			//en caso que el dni no sea valido se guarda por defecto el 99999999
+	            			aux.setDni(99999999);
+	            		}finally {
+	            			System.out.println(aux.toString());
+	            		}
+	            	}
+	                //reinicio los valores para la siguiente linea	
+	                nroAtributo = 1;
+	                atributo = "";
+	                aux = new Persona();
+	                
+	            } else {
+	                atributo += (char) c;
+	            }
+
+	            c = entrada.read();
+	        
+	        }
+	        entrada.close();
+	    }catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	
 }

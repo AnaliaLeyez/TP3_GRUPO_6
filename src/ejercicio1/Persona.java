@@ -82,7 +82,7 @@ public class Persona implements Comparable<Persona> {
            
             if (!Character.isDigit(dni.charAt(i))) {
             	DniInvalido dni1 = new DniInvalido();
-                throw dni1;
+                throw dni1;             
             }
         }
     }
