@@ -96,7 +96,8 @@ public class Archivo {
 			e.printStackTrace();
 		}
     }
-	
+
+	/*
 public void leePersonas() {
 		
 	    FileReader entrada;
@@ -149,6 +150,7 @@ public void leePersonas() {
 	        e.printStackTrace();
 	    }
 	}
+	*/
 	
 	public TreeSet<Persona> leer()
 	{
