@@ -15,7 +15,6 @@ public class Principal {
 		personas = filePersonas.leer();
 		
 		
-		
 		for(Persona p : personas)
 		{
 			System.out.println(p.toString());
@@ -31,5 +30,6 @@ public class Principal {
 
 	    System.out.println("Se ha copiado la informacion de la lista Personas al archivo Resultado.txt de forma exitosa.");				
 		
+	    archivoDestino.lee_lineas();
 	}
 }

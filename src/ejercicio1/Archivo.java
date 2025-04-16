@@ -195,6 +195,24 @@ public void leePersonas() {
 		}
 	
 	
+	public void lee_lineas() {
+		FileReader entrada;
+		try {
+			entrada = new FileReader(ruta);
+			BufferedReader miBuffer = new BufferedReader(entrada);
+			
+		   String linea = "";
+			while (linea != null) {
+				System.out.println(linea);
+				linea = miBuffer.readLine();
+			}
+			miBuffer.close();
+			entrada.close();
+
+		} catch (IOException e) {
+			System.out.println("No se encontro el archivo");
+		}
+	}
 	
 	
 //////////////////////////////////////////Corchete clase/////////////////////////////////////////////////////////////////////	
