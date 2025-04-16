@@ -96,6 +96,7 @@ public class Archivo {
 			e.printStackTrace();
 		}
     }
+		
 
 	/*
 public void leePersonas() {
@@ -191,7 +192,15 @@ public void leePersonas() {
 			e.printStackTrace();
 		}
 		return personas;
-	}
+		}
+	
+	
+	
+	
+//////////////////////////////////////////Corchete clase/////////////////////////////////////////////////////////////////////	
 }
+
+
+
 
 
