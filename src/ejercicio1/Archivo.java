@@ -97,61 +97,6 @@ public class Archivo {
 		}
     }
 		
-
-	/*
-public void leePersonas() {
-		
-	    FileReader entrada;
-	    String atributo = "";
-	    Persona aux = new Persona();
-	    int nroAtributo = 1;
-	    
-	    try {
-	        entrada = new FileReader(ruta);
-	        
-	        int c = entrada.read();
-	        while (c != -1) {
-	        	
-	            if (c == 45) { // guion medio 
-	                if (nroAtributo == 1)
-	                    aux.setNombre(atributo);
-	                
-	                else if (nroAtributo == 2)
-	                    aux.setApellido(atributo);
-
-	                nroAtributo++;
-	                atributo = "";
-	                
-	            } else if (c == '\n') { //salto de linea
-	            	if (!atributo.trim().isEmpty()) {
-	            		try {
-	            			Persona.verificarDniInvalido(atributo.trim()); //trim elimina el salto de linea o espacios vacios
-	            			aux.setDni(Integer.parseInt(atributo.trim()));
-	            		} catch (DniInvalido e) {
-	            			//en caso que el dni no sea valido se guarda por defecto el 99999999
-	            			aux.setDni(99999999);
-	            		}finally {
-	            			System.out.println(aux.toString());
-	            		}
-	            	}
-	                //reinicio los valores para la siguiente linea	
-	                nroAtributo = 1;
-	                atributo = "";
-	                aux = new Persona();
-	                
-	            } else {
-	                atributo += (char) c;
-	            }
-
-	            c = entrada.read();
-	        
-	        }
-	        entrada.close();
-	    }catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	}
-	*/
 	
 	public TreeSet<Persona> leer()
 	{
@@ -173,12 +118,18 @@ public void leePersonas() {
 					
 					try {
 						Persona.verificarDniInvalido(dni);
+						Persona.verificarNombreYApellido(nombre, apellido);
 						if(!personas.add(new Persona(nombre, apellido, Integer.parseInt(dni))))
 							System.out.println(nombre + " " + apellido + " ya se encuentra registrado\n");
 					} 
 					catch (DniInvalido e) 
 					{
 						System.out.println(nombre + " " + apellido + " DNI incorrecto");
+						e.printStackTrace();
+					}
+					catch(NombreYApellidoInvalido e)
+					{
+						System.out.println(nombre + " " + apellido + "El nombre y apellido solo pueden contener letras\n");
 						e.printStackTrace();
 					}
 				}

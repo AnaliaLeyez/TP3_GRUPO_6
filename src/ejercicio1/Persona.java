@@ -81,11 +81,22 @@ public class Persona implements Comparable<Persona> {
         for (int i = 0; i < dni.length(); i++) {
            
             if (!Character.isDigit(dni.charAt(i))) {
-            	DniInvalido dni1 = new DniInvalido();
-                throw dni1;             
+            	throw new DniInvalido();            
             }
         }
     }
+	
+	
+	public static void verificarNombreYApellido(String nombre, String apellido) throws NombreYApellidoInvalido {
+	    
+	    if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+") || !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+	        throw new NombreYApellidoInvalido();
+	    }
+	}
+	
+	
+	
+	
 
 	
 }
