@@ -53,8 +53,7 @@ public class Principal {
 		if (!personas.isEmpty() && archivoDestino.existe()) {
 
 			if (archivoDestino.escribeLineas(personas)) {
-				System.out.println(
-						"Se ha copiado la informacion de la lista Personas al archivo Resultado.txt de forma exitosa.");
+				System.out.println("Se ha copiado la informacion de la lista Personas al archivo Resultado.txt de forma exitosa.");
 				archivoDestino.lee_lineas();
 			} else {
 				System.out.println("Eror, no se ha podido copiar la informacion al archivo Resultado.txt");
