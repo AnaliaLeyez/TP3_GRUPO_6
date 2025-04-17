@@ -13,7 +13,7 @@ public class Persona implements Comparable<Persona> {
 		this.apellido = "";
 		this.dni = 99999999;
 	}
-	
+
 	public Persona(String nombre, String apellido, int dni) {
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -44,13 +44,14 @@ public class Persona implements Comparable<Persona> {
 		this.dni = dni;
 	}
 
-	//Entiendo que con el dni debería ser suficiente, ya que no puede haber dos personas con el mismo dni. 
+	// Entiendo que con el dni debería ser suficiente, ya que no puede haber dos
+	// personas con el mismo dni.
 	@Override
 	public int hashCode() {
 		return Objects.hash(dni);
 	}
 
-	//Contiúo con la misma lógica, que con hashcode. 
+	// Contiúo con la misma lógica, que con hashcode.
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -64,39 +65,32 @@ public class Persona implements Comparable<Persona> {
 
 	}
 
-	//Compara el apellido y ordena. 
+	// Compara el apellido y ordena.
 	@Override
 	public int compareTo(Persona o) {
 		return this.apellido.compareTo(o.apellido);
 	}
 
 	@Override
-	public String toString() {
-		return "Nombre: " + nombre + " Apellido: " + apellido + " DNI: " + dni;
-	}
+	  public String toString() { 
+		return "Nombre: " + nombre + "   Apellido: " + apellido + "   DNI: " + dni; 
+		}
 
-	
 	public static void verificarDniInvalido(String dni) throws DniInvalido {
-	       
-        for (int i = 0; i < dni.length(); i++) {
-           
-            if (!Character.isDigit(dni.charAt(i))) {
-            	throw new DniInvalido();            
-            }
-        }
-    }
-	
-	
-	public static void verificarNombreYApellido(String nombre, String apellido) throws NombreYApellidoInvalido {
-	    
-	    if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+") || !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
-	        throw new NombreYApellidoInvalido();
-	    }
-	}
-	
-	
-	
-	
 
-	
+		for (int i = 0; i < dni.length(); i++) {
+
+			if (!Character.isDigit(dni.charAt(i))) {
+				throw new DniInvalido();
+			}
+		}
+	}
+
+	public static void verificarNombreYApellido(String nombre, String apellido) throws NombreYApellidoInvalido {
+
+		if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+") || !apellido.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+			throw new NombreYApellidoInvalido();
+		}
+	}
+
 }

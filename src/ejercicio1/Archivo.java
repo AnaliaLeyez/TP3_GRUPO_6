@@ -56,8 +56,28 @@ public class Archivo {
 		}
 		return false;	
 	}
-		
-	public void escribeLineas(Persona nuevaPersona) {
+
+	
+	public boolean escribePersonas(Persona nuevaPersona) {
+		try {
+			FileWriter entrada = new FileWriter(ruta, true);
+			BufferedWriter buffer = new BufferedWriter(entrada);
+
+			buffer.write(nuevaPersona.getNombre()+"-"+nuevaPersona.getApellido()+"-"+nuevaPersona.getDni());
+			buffer.newLine();
+			buffer.close();
+			entrada.close();
+			return true;
+			
+		} catch (IOException e) {
+			
+			System.out.println("Error al escribir el archivo");
+			e.printStackTrace();
+			return false;
+		}
+    }
+	
+	public boolean escribeLineas(Persona nuevaPersona) {
 		try {
 			FileWriter entrada = new FileWriter(ruta, true);
 			BufferedWriter buffer = new BufferedWriter(entrada);
@@ -66,18 +86,20 @@ public class Archivo {
 			buffer.newLine();
 			buffer.close();
 			entrada.close();
+			return true;
 			
 		} catch (IOException e) {
 			
 			System.out.println("Error al escribir el archivo");
 			e.printStackTrace();
+			return false;
 		}
     }
 	
-	public void escribeLineas(TreeSet<Persona> listaPersonas) {
+	public boolean escribeLineas(TreeSet<Persona> listaPersonas) {
     	
 		try {
-			FileWriter entrada = new FileWriter(ruta, true);
+			FileWriter entrada = new FileWriter(ruta, false);
 			BufferedWriter buffer = new BufferedWriter(entrada);
 			
 			Iterator<Persona> it = listaPersonas.iterator();
@@ -89,11 +111,13 @@ public class Archivo {
 			
 			buffer.close();
 			entrada.close();
+			return true;
 			
 		} catch (IOException e) {
 			
 			System.out.println("Error al escribir el archivo");
 			e.printStackTrace();
+			return false;
 		}
     }
 		
@@ -129,7 +153,7 @@ public class Archivo {
 					}
 					catch(NombreYApellidoInvalido e)
 					{
-						System.out.println(nombre + " " + apellido + "El nombre y apellido solo pueden contener letras\n");
+						System.out.println(nombre + " " + apellido + " Incorrecto. El nombre y apellido solo pueden contener letras\n");
 						e.printStackTrace();
 					}
 				}
